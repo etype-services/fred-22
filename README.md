@@ -1,3 +1,3 @@
-# lsn-theme
-LSN Drupal theme
+# fred-22 theme
+Drupal theme
 # charliellewellin@gmail.com
