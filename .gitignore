@@ -10,6 +10,7 @@ sites/*/private
 robots.txt
 favicon.ico
 error_log
+.htaccess
 
 # Ignore themes folder
 sites/all/themes
