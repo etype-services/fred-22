@@ -8,3 +8,6 @@ sites/*/private
 
 # Ignore default text files
 robots.txt
+
+# Ignore themes folder
+sites/all/themes
