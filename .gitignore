@@ -6,8 +6,10 @@ files/
 sites/*/files
 sites/*/private
 
-# Ignore default text files
+# Ignore default files
 robots.txt
+favicon.ico
+error_log
 
 # Ignore themes folder
 sites/all/themes
