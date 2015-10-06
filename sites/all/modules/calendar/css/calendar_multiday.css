@@ -58,7 +58,7 @@
  * simplify the mini calendar by removing borders
  */
 .calendar-calendar .mini {
-  border: 1px solid #eee;
+  border: none;
 }
 
 /**
@@ -177,9 +177,8 @@
 table td.mini,
 table th.mini,
 table.mini td.week {
-  padding: 5px;
+  padding: 0 1px 0 0;
   margin: 0;
-  border: 1px solid #eee;
   }
 table td.mini a {
   font-weight: normal;
@@ -191,7 +190,7 @@ table td.mini a {
   padding: 0px;
 }
 table .mini-day-on a {
-  text-decoration: none; color:#fff; background: #000066; padding: 2px;
+  text-decoration: underline;
 }
 .calendar-calendar .mini .title {
   font-size: .8em;
@@ -330,7 +329,7 @@ table.calendar-legend tr.even .stripe {
 }
 .calendar-calendar table.mini td.empty {
   background: #fff;
-  border: 1px solid #eee;
+  border-color: #fff;
 }
 .calendar-calendar td div.day {
   border: 1px solid #ccc;
