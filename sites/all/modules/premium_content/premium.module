@@ -150,22 +150,14 @@ function premium_form_node_type_form_alter(&$form, &$form_state) {
  * The Premium flag will behave like other options (published, promote, etc).
  */
 function premium_form_alter(&$form, $form_state, $form_id) {
-  if (isset($form['#node']->type) && $form_id == $form['#node']->type . '_node_form' ) {  
+  if (isset($form['type']['#value']) && $form['type']['#value'] . '_node_form' == $form_id) {
     if (user_access('administer node premium status')) {
       $node = $form['#node'];
-
-      // existing nodes will have some preference set
-      if(isset($node->nid)) {
-        $premium_level = premium_node_level_data($node);
-      } else {
-        // get the default for this content type
-        $premium_level = array( 'machine_name' => variable_get("premium_{$node->type}", 0) );
-      }
-
+      $premium_level = premium_node_level_data($node);
       $form['options']['premium'] = array(
         '#type' => 'select',
         '#title' => t('Premium content level'),
-        '#default_value' => !empty($premium_level['machine_name']) ? $premium_level['machine_name'] : '',
+        '#default_value' => is_array($premium_level) ? $premium_level['machine_name'] : '',
         '#options' => array(0 => t('None')) + premium_level_option_list(),
       );
     }
@@ -319,11 +311,7 @@ function premium_node_level_data($node) {
   if (isset($node->premium_level)) {
     return $node->premium_level;
   }
-  
-  if (!isset($node->nid)) {
-    return array();
-  }
-  
+
   $query = db_query("
     SELECT pn.level_name, pn.start_ts, pn.end_ts
     FROM {premium_nodes} AS pn
@@ -403,7 +391,7 @@ function premium_user_content_access($node, $account = NULL) {
   // Access is granted or revoked explicitly.
   foreach (module_implements('premium_access') as $name) {
     $function = $name . '_premium_access';
-    if (is_bool($access = $function($node))) {
+    if (is_bool($access = $function($node, $teaser))) {
       return $access;
     }
   }
@@ -463,7 +451,7 @@ function _premium_set_premium($node, $machine_name = FALSE) {
  * Helper function to generate permission name.
  */
 function _premium_permission_name($level_name) {
-  return 'Access <em>' . check_plain($level_name) . '</em> premium content';
+  return 'access “' . check_plain($level_name) . '” premium content';
 }
 
 /**
@@ -484,7 +472,7 @@ function theme_premium_body($arguments) {
   $node = $arguments['node'];
   node_build_content($node, 'teaser');
   $level = premium_level_load($node->premium);
-  if (!empty($level->denied_message)) {
+  if ($level->denied_message) {
     $denied_message = $level->denied_message;
     $denied_message_format = $level->denied_message_format;
   }
