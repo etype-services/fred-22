@@ -11,7 +11,7 @@ favicon.ico
 error_log
 
 # Ignore themes folder
-sites/all/themes
+sites/all/themes*
 
 # Odds and sods
 400.shtml
