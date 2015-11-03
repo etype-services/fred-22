@@ -6,7 +6,6 @@ sites/*/files
 sites/*/private
 
 # Ignore default files
-robots.txt
 favicon.ico
 error_log
 
