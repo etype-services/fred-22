@@ -96,7 +96,20 @@ function rules_taxonomy_vocabulary_integration_access($type, $name) {
   }
 }
 
+/**
+ * Event handler support taxonomy bundle event settings.
+ */
+class RulesTaxonomyEventHandler extends RulesEventHandlerEntityBundle {
 
+  /**
+   * Returns the label to use for the bundle property.
+   *
+   * @return string
+   */
+  protected function getBundlePropertyLabel() {
+    return t('vocabulary');
+  }
+}
 
 /**
  * @}

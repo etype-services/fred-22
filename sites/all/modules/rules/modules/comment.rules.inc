@@ -63,3 +63,21 @@ function rules_comment_integration_access($type, $name) {
   }
 }
 
+/**
+ * Event handler support comment bundle event settings.
+ */
+class RulesCommentEventHandler extends RulesEventHandlerEntityBundle {
+
+  /**
+   * Returns the label to use for the bundle property.
+   *
+   * @return string
+   */
+  protected function getBundlePropertyLabel() {
+    return t('type');
+  }
+}
+
+/**
+ * @}
+ */
