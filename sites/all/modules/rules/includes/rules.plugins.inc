@@ -778,7 +778,7 @@ class RulesEventSet extends RulesRuleSet {
         if (!$rule->dirty) {
           // Clone the rule to avoid modules getting the changed version from
           // the static cache.
-          $sets[$event_name]->rule(clone $rule);
+          // $sets[$event_name]->rule(clone $rule);
         }
       }
     }
