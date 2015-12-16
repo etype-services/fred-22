@@ -141,21 +141,4 @@ function rules_node_admin_access() {
 }
 
 
-/**
- * Event handler support node bundle event settings.
- */
-class RulesNodeEventHandler extends RulesEventHandlerEntityBundle {
 
-  /**
-   * Returns the label to use for the bundle property.
-   *
-   * @return string
-   */
-  protected function getBundlePropertyLabel() {
-    return t('type');
-  }
-}
-
-/**
- * @}
- */
