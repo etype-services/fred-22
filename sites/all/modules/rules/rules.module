@@ -647,13 +647,7 @@ function rules_get_event_base_name($event_name) {
  * @return RulesEventHandlerInterface
  *   The event handler.
  */
-function rules_get_event_handler($event_name, array $settings = NULL) {
-  $event_name = rules_get_event_base_name($event_name);
-  $event_info = rules_get_event_info($event_name);
-  $class = !empty($event_info['class']) ? $event_info['class'] : 'RulesEventDefaultHandler';
-  $handler = new $class($event_name, $event_info);
-  return isset($settings) ? $handler->setSettings($settings) : $handler;
-}
+
 
 /**
  * Creates a new instance of a the given rules plugin.
