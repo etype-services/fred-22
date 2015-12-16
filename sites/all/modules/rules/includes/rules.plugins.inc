@@ -770,22 +770,6 @@ class RulesEventSet extends RulesRuleSet {
         if (empty($events[$event_base_name])) {
           continue;
         }
-        // Create an event set if not yet done.
-        if (!isset($sets[$event_name])) {
-          $handler = rules_get_event_handler($event_name, $rule->getEventSettings($event_name));
-
-          // Start the event dispatcher for this event, if any.
-          if ($handler instanceof RulesEventDispatcherInterface && !$handler->isWatching()) {
-            $handler->startWatching();
-          }
-
-          // Update the event info with the variables available based on the
-          // event settings.
-          $event_info = $events[$event_base_name];
-          $event_info['variables'] = $handler->availableVariables();
-          $sets[$event_name] = new RulesEventSet($event_info);
-          $sets[$event_name]->name = $event_name;
-        }
 
         // If a rule is marked as dirty, check if this still applies.
         if ($rule->dirty) {
